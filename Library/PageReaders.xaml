@@ -20,13 +20,13 @@
                 <DataGridTemplateColumn Header="Редактирование" Width="120">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Редактирование" Width="100"/>
+                            <Button Content="Редактирование" Width="100" Click="Button_Click_Edit"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Добавление" HorizontalAlignment="Left" Height="25" Margin="10,20,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_Add"/>
-        <Button Content="Удаление" HorizontalAlignment="Left" Height="25" Margin="690,20,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button Content="Удаление" HorizontalAlignment="Left" Height="25" Margin="690,20,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click_Del"/>
     </Grid>
 </Page>

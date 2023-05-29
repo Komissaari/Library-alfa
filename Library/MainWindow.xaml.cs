@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Library
 {
@@ -23,14 +14,11 @@ namespace Library
         public MainWindow()
         {
             InitializeComponent();
-            //DGridBook.ItemsSource = LibraryEntities.GetContext().Books.ToList();
-
             RegisterFrame.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             Manager.mainWindow = this;
-
             Manager.RegisterFrame = RegisterFrame;
         }
-    
+        //кнопка авторизации
         private void Button_Click_Autorization(object sender, RoutedEventArgs e)
         {
             if(TB_Login.Text == null || TB_Pass.Password == null)
@@ -39,13 +27,13 @@ namespace Library
             }
             else
             {
+                //процесс расшифровки хэшированного пароля
                 var crypt = System.Security.Cryptography.SHA256.Create();
                 var notfinal = crypt.ComputeHash(Encoding.UTF8.GetBytes(TB_Pass.Password));
                 var final = Convert.ToBase64String(notfinal);
-
                 Readers user = Manager.GetContext().Readers.FirstOrDefault(p => p.Reader_Login == TB_Login.Text && (p.Reader_Password.ToString() ==
                 final));
-
+                //если есть пользователь имеет флаг администратора, то открывается специальное меню
                 if (user != null)
                 {
                     if(user.Admin == true)
@@ -63,14 +51,13 @@ namespace Library
                 }
             }
         }
-
+        //кнопка регистрации
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             GridMain.Visibility = Visibility.Collapsed;
             RegisterFrame.Navigate(new PageRegistration());
-
         }
-
+        //метод отображения формы регистрации
         public void VisibleMain()
         {
             RegisterFrame.Content = null;

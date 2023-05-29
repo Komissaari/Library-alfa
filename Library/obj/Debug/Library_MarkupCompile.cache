@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\C\Library\Library\Library\obj\Debug\
+C:\Users\User\Documents\GitHub\Library-alfa\Library\obj\Debug\
 Library
 none
 false
 DEBUG;TRACE
-D:\C\Library\Library\Library\App.xaml
+C:\Users\User\Documents\GitHub\Library-alfa\Library\App.xaml
 141806269887
 2-1957146511
 29-1688753576
-19-442224734
+19491994854
 AdminMenu.xaml;ItemBook.xaml;MainWindow.xaml;PageAuthors.xaml;PageAuthorsEdit.xaml;PageBook.xaml;PageBookEdit.xaml;PageExtradition.xaml;PagePublisher.xaml;PagePublisherEdit.xaml;PageReaders.xaml;PageReadersEdit.xaml;PageRegistration.xaml;UserMenu.xaml;
 
 False

@@ -1,22 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Library
 {
     /// <summary>
-    /// Логика взаимодействия для PageRegistration.xaml
+    /// Логика взаимодействия для PageRegistrationEdit схожа с логикой PageAuthorsEdit
     /// </summary>
     public partial class PageRegistration : Page
     {
@@ -26,7 +16,6 @@ namespace Library
             InitializeComponent();
             DataContext = _currentReaders;
         }
-
         private void Button_Click_Save(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
@@ -38,13 +27,11 @@ namespace Library
                 errors.AppendLine("Пустое поле пароля читателя!");
                 
             }
-
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
             try
             {
                 var crypt = System.Security.Cryptography.SHA256.Create();
@@ -62,7 +49,6 @@ namespace Library
                 MessageBox.Show(err.Message.ToString());
             }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Manager.mainWindow.VisibleMain();

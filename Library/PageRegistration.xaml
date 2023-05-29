@@ -27,13 +27,13 @@
         <TextBlock Text="Имя" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"></TextBlock>
         <TextBlock Text="Отчество" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"></TextBlock>
         <TextBlock Text="Пароль" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="4"></TextBlock>
-        <TextBox Text="{Binding Reader_Login}"  Grid.Column="1" Width="600" Height="20"></TextBox>
-        <TextBox Text="{Binding Surname}" MaxLength="30" Grid.Column="1" Grid.Row="1" Width="600" Height="20"></TextBox>
-        <TextBox Text="{Binding Name}" MaxLength="12" Grid.Column="1" Grid.Row="2" Width="600" Height="20"></TextBox>
-        <TextBox Text="{Binding Patronymic}" MaxLength="15" Grid.Column="1" Grid.Row="3" Width="600" Height="20"></TextBox>
-        <PasswordBox x:Name="TB_Pass"  MaxLength="15" Grid.Column="1" Grid.Row="4" Width="600" Height="20"></PasswordBox>
+        <TextBox Text="{Binding Reader_Login}"  Grid.Column="1" Width="400" Height="20"></TextBox>
+        <TextBox Text="{Binding Surname}" MaxLength="30" Grid.Column="1" Grid.Row="1" Width="400" Height="20"></TextBox>
+        <TextBox Text="{Binding Name}" MaxLength="12" Grid.Column="1" Grid.Row="2" Width="400" Height="20"></TextBox>
+        <TextBox Text="{Binding Patronymic}" MaxLength="15" Grid.Column="1" Grid.Row="3" Width="400" Height="20"></TextBox>
+        <PasswordBox x:Name="TB_Pass"  MaxLength="15" Grid.Column="1" Grid.Row="4" Width="400" Height="20"></PasswordBox>
 
         <Button Content="Сохранить" Grid.Column="1" Grid.Row="5" Width="200" Height="40" Click="Button_Click_Save"></Button>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="234,50,0,0" Grid.Row="5" VerticalAlignment="Top" Click="Button_Click"/>
+        <Button Content="Назад" Height="30" Width="100" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" Click="Button_Click"/>
     </Grid>
 </Page>

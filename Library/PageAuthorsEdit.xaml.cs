@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Library
 {
@@ -20,33 +10,40 @@ namespace Library
     /// </summary>
     public partial class PageAuthorsEdit : Page
     {
+        bool _edit;
         private Authors _currentAuthors = new Authors(); 
-        public PageAuthorsEdit()
+        //в случае редактирования не позволяем трогать поле ID
+        public PageAuthorsEdit(Authors selectedAuthors, bool edit)
         {
             InitializeComponent();
-            /*if (selectedAuthors != null)
+            _edit = edit;
+            if (selectedAuthors != null)
             {
-                TB_ID_Publication.IsEnabled = false;
-                selectedAuthors = selectedAuthors;
+                TB_ID_Author.IsEnabled = false;
+               _currentAuthors = selectedAuthors;
             }
-            DataContext = _currentAuthors;*/
+            DataContext = _currentAuthors;
         }
-
+        //кнопка сохранения с проверками на заполненность полей
         private void Button_Click_Save(object sender, RoutedEventArgs e)
         {
             StringBuilder errors = new StringBuilder();
             if (string.IsNullOrWhiteSpace(_currentAuthors.Au_Surname))
                 errors.AppendLine("Пустое поле фамилии автора!");
-
+            //если есть ошибки то отменяем сохранение
             if (errors.Length > 0)
             {
                 MessageBox.Show(errors.ToString());
                 return;
             }
-
+            //задаём логику сохранения при добавлении и сохраненни изменения при редактировании с помощью 
+            //булевской переменной
             try
             {
-                Manager.GetContext().Authors.Add(_currentAuthors);
+                if (!_edit)
+                {
+                    Manager.GetContext().Authors.Add(_currentAuthors);
+                }
                 Manager.GetContext().SaveChanges();
                 MessageBox.Show("сохранено ...");
                 Manager.MainFrame.GoBack();

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="AdminMenu" Height="450" Width="800">
+        Title="AdminMenu" Height="450" Width="1300">
     <Grid>
         <Frame x:Name="MainFrame" Margin="0,75,0,0"/>
         <Button Content="Книги" HorizontalAlignment="Left" Margin="25,15,0,0" VerticalAlignment="Top" Height="30" Width="130" Click="Button_Click_Book"/>

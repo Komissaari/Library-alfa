@@ -1,22 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Library
 {
     /// <summary>
-    /// Логика взаимодействия для PagePublisher.xaml
+    /// Логика взаимодействия для PagePublisher схожа с логикой PageAuthors
     /// </summary>
     public partial class PagePublisher : Page
     {
@@ -25,8 +15,6 @@ namespace Library
             InitializeComponent();
             //DGridPublisher.ItemsSource = LibraryEntities.GetContext().Publisher.ToList();
         }
-
-   
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             if (Visibility == Visibility.Visible)
@@ -35,11 +23,32 @@ namespace Library
                 DGridPublisher.ItemsSource = Manager.GetContext().Publisher.ToList();
             }
         }
-
-
+        private void Button_Click_Del(object sender, RoutedEventArgs e)
+        {
+            var delPublisher = DGridPublisher.SelectedItems.Cast<Publisher>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить {delPublisher.Count()} элементов?", "Внимание!", MessageBoxButton.YesNo,
+                MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Manager.GetContext().Publisher.RemoveRange(delPublisher);
+                    Manager.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены...");
+                    DGridPublisher.ItemsSource = Manager.GetContext().Publisher.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new PagePublisherEdit());
+            Manager.MainFrame.Navigate(new PagePublisherEdit(null, false));
+        }
+        private void Button_Click_Edit(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new PagePublisherEdit((sender as Button).DataContext as Publisher, true));
         }
     }
 }

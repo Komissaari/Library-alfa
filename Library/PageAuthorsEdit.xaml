@@ -25,10 +25,10 @@
         <TextBlock Text="Фамилия автора" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"></TextBlock>
         <TextBlock Text="Имя автора" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2"></TextBlock>
         <TextBlock Text="Отчество автора" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3"></TextBlock>
-        <TextBox Text="{Binding ID_Author}"  Grid.Column="1" Width="600" Height="20"></TextBox>
-        <TextBox Text="{Binding Au_Surname}" MaxLength="30" Grid.Column="1" Grid.Row="1" Width="600" Height="20"></TextBox>
-        <TextBox Text="{Binding Au_Name}" MaxLength="12" Grid.Column="1" Grid.Row="2" Width="600" Height="20"></TextBox>
-        <TextBox Text="{Binding Au_Patronymic}" MaxLength="15" Grid.Column="1" Grid.Row="3" Width="600" Height="20"></TextBox>
+        <TextBox Text="{Binding ID_Author}" x:Name="TB_ID_Author" Grid.Column="1" Width="400" Height="20"></TextBox>
+        <TextBox Text="{Binding Au_Surname}" MaxLength="30" Grid.Column="1" Grid.Row="1" Width="400" Height="20"></TextBox>
+        <TextBox Text="{Binding Au_Name}" MaxLength="12" Grid.Column="1" Grid.Row="2" Width="400" Height="20"></TextBox>
+        <TextBox Text="{Binding Au_Patronymic}" MaxLength="15" Grid.Column="1" Grid.Row="3" Width="400" Height="20"></TextBox>
         <Button Content="Сохранить" Grid.Column="1" Grid.Row="4" Width="200" Height="40" Click="Button_Click_Save"></Button>
     </Grid>
 </Page>

@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Library"
         mc:Ignorable="d"
-        Title="MainWindow" Height="470" Width="800">
+        Title="MainWindow" Height="486" Width="1292">
     <Grid>
         <Frame x:Name="RegisterFrame" Width="800"/>
-        <Grid x:Name="GridMain">
-        <TextBlock Text="Авторизация" FontSize="24" HorizontalAlignment="Center" Width="149" Margin="0,10,0,395"/>
-        <TextBlock Text="Логин" FontSize="20" Margin="215,92,484,317"/>
-        <TextBox x:Name="TB_Login" Margin="215,119,100,288"/>
-        <TextBlock Text="Пароль" FontSize="20" Margin="215,163,454,244"/>
-        <PasswordBox  x:Name="TB_Pass" Margin="215,197,100,217" PasswordChar="*"/>
-        <Button Content="Авторизоваться" FontSize="20" Margin="215,266,400,124" Click="Button_Click_Autorization"/>
-        <Button Content="Регистрация" FontSize="20" Margin="458,266,132,124" Click="Button_Click"/>
-   </Grid> </Grid>
+        <Grid x:Name="GridMain" Margin="0,0,10,0">
+            <TextBlock Text="Авторизация" FontSize="24" HorizontalAlignment="Center" Width="149" Margin="0,10,0,395"/>
+            <TextBlock Text="Логин" FontSize="20" Margin="310,80,389,329"/>
+            <TextBox x:Name="TB_Login" Width="600" Height="30" Margin="215,119,287,288"/>
+            <TextBlock Text="Пароль" Width="600" Height="30" FontSize="20" Margin="264,154,336,250"/>
+            <PasswordBox  x:Name="TB_Pass" Width="600" Height="30" Margin="215,197,287,191" PasswordChar="*"/>
+            <Button Content="Авторизоваться" Width="200" Height="40" FontSize="20" Margin="264,268,736,126" Click="Button_Click_Autorization"/>
+            <Button Content="Регистрация" Width="200" Height="40" FontSize="20" Margin="664,268,336,126" Click="Button_Click"/>
+        </Grid>
+    </Grid>
 </Window>

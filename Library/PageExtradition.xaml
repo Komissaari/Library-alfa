@@ -21,5 +21,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Выгрузить должников" HorizontalAlignment="Left" Margin="152,10,0,0" VerticalAlignment="Top" Height="24" Width="165" Click="Button_Click"/>
+        <Button Content="Удалить"  Width="140" Height="24" Margin="348,10,312,416" Click="Button_Click_Del"></Button>
     </Grid>
 </Page>

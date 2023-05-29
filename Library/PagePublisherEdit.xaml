@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <TextBlock Text="Номер издательства" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
         <TextBlock Text="Название издательства" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1"></TextBlock>
-        <TextBox Text="{Binding ID_Publisher}" Grid.Column="1" Width="400" Height="20"></TextBox>
+        <TextBox Text="{Binding ID_Publisher}" x:Name="TB_ID_Publisher"   Grid.Column="1" Width="400" Height="20"></TextBox>
         <TextBox Text="{Binding Name_Publisher}" MaxLength="30" Grid.Column="1" Grid.Row="1" Width="400" Height="20"></TextBox>
         <Button Content="Сохранить" Grid.Column="1" Grid.Row="3" Width="200" Height="40" Click="Button_Click_Save" ></Button>
         

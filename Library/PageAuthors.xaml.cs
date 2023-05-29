@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Library
 {
@@ -23,8 +13,6 @@ namespace Library
         public PageAuthors()
         {
             InitializeComponent();
-            //DGridAuthors.ItemsSource = LibraryEntities.GetContext().Authors.ToList();
-
         }
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -34,12 +22,35 @@ namespace Library
                 DGridAuthors.ItemsSource = Manager.GetContext().Authors.ToList();
             }
         }
-
+        //кнопка удаления имеет в себе проверку на ошибочность, что позволяет уберечь от случайного удаления
+        private void Button_Click_Del(object sender, RoutedEventArgs e)
+        {
+            var delAuthors = DGridAuthors.SelectedItems.Cast<Authors>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить {delAuthors.Count()} элементов?", "Внимание!", MessageBoxButton.YesNo, 
+                MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Manager.GetContext().Authors.RemoveRange(delAuthors);
+                    Manager.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены...");
+                    DGridAuthors.ItemsSource = Manager.GetContext().Authors.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
+        //кнопка добавления элимента
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new PageAuthorsEdit());
+            Manager.MainFrame.Navigate(new PageAuthorsEdit(null, false));
         }
-
-       
+        //в кнопку редактирования передаём нужное поле для редактирования
+        private void Button_Click_Edit(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new PageAuthorsEdit((sender as Button).DataContext as Authors, true));
+        }
     }
 }

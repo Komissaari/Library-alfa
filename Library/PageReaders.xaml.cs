@@ -1,29 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Library
 {
     /// <summary>
-    /// Логика взаимодействия для PageReaders.xaml
+    /// Логика взаимодействия для PageReaders схожа с логикой PageAuthors
     /// </summary>
     public partial class PageReaders : Page
     {
         public PageReaders()
         {
             InitializeComponent();
-            //DGridReaders.ItemsSource = LibraryEntities.GetContext().Readers.ToList();
         }
         private void Page_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
@@ -33,10 +22,32 @@ namespace Library
                 DGridReaders.ItemsSource = Manager.GetContext().Readers.ToList();
             }
         }
-
+        private void Button_Click_Del(object sender, RoutedEventArgs e)
+        {
+            var delReaders = DGridReaders.SelectedItems.Cast<Readers>().ToList();
+            if (MessageBox.Show($"Вы точно хотите удалить {delReaders.Count()} элементов?", "Внимание!", MessageBoxButton.YesNo,
+                MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    Manager.GetContext().Readers.RemoveRange(delReaders);
+                    Manager.GetContext().SaveChanges();
+                    MessageBox.Show("Данные удалены...");
+                    DGridReaders.ItemsSource = Manager.GetContext().Readers.ToList();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
+            }
+        }
         private void Button_Click_Add(object sender, RoutedEventArgs e)
         {
-            Manager.MainFrame.Navigate(new PageReadersEdit());
+            Manager.MainFrame.Navigate(new PageReadersEdit(null, false));
+        }
+        private void Button_Click_Edit(object sender, RoutedEventArgs e)
+        {
+            Manager.MainFrame.Navigate(new PageReadersEdit((sender as Button).DataContext as Readers, true));
         }
     }
 }

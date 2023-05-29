@@ -33,7 +33,7 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button Content="Добавление"  HorizontalAlignment="Left" Height="30" Margin="30,20,0,0" VerticalAlignment="Top" Width="140" Click="Button_Click_Add"/>
-        <Button Content="Удаление" HorizontalAlignment="Left" Height="30" Margin="1270,20,0,30" VerticalAlignment="Top" Width="140" Click="Button_Click_Del"/>
+        <Button Content="Удаление" HorizontalAlignment="Left" Height="30" Margin="994,20,0,0" VerticalAlignment="Top" Width="140" Click="Button_Click_Del"/>
 
 
     </Grid>

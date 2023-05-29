@@ -1,18 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Library
 {
@@ -21,42 +13,33 @@ namespace Library
     /// </summary>
     public partial class UserMenu : Window
     {
-       // List<Tuple<int,int>> _items = new List<Tuple<int, int>>();
-
         public UserMenu()
         {
             InitializeComponent();
-
             UpdateDisplay();
-
         }
-
+        //метод конвертации изображения из байтового формата обратно в изображение по алгоритму Base64ToImage
         public BitmapImage Base64ToImage(string base64String)
         {
             byte[] binaryData = Convert.FromBase64String(base64String);
-
             BitmapImage bi = new BitmapImage();
             bi.BeginInit();
             bi.StreamSource = new MemoryStream(binaryData);
             bi.EndInit();
-
             return bi;
         }
-
+        //метод обновления дисплея
         public void UpdateDisplay()
         {
             LibraryEntities1 model = new LibraryEntities1();
-
              List<Books> allBooks = model.Books.ToList();
-           
-
             ComboBoxBooks.Items.Clear();
-           // _items.Clear();
             Vzitie.Items.Clear();
             ListItebBookUI.Children.Clear();
 
             List<ItemBook> itemBooks = new List<ItemBook>();
-
+            //сравниваем введённые значения в поле поиска с фамилией, именем и названием книги
+            //поиск по всей таблицы
             foreach (var book in allBooks)
             {
                 if(Poisk.Text!="")
@@ -70,19 +53,13 @@ namespace Library
                                 continue;
                             }
                         }
-                           
                     }
                 }
-
-
-                    var ext = model.Extradition.Where(w => w.ID_Publication == book.ID_Publication && w.Date_Return == null).Count();
-
+                var ext = model.Extradition.Where(w => w.ID_Publication == book.ID_Publication && w.Date_Return == null).Count();
                 if (ext == 0)
                 {
                     ComboBoxBooks.Items.Add($"{book.Name_Publication} ({book.Authors.Au_Surname} {book.Authors.Au_Name}) ");
-                   // _items.Add(new Tuple<int, int>(ComboBoxBooks.Items.Count - 1, book.ID_Publication));
-
-
+                    //формирование кастомной каротчки книг
                     ItemBook ib = new ItemBook();
                     if (book.Image != null)
                     {
@@ -95,43 +72,18 @@ namespace Library
                     itemBooks.Add(ib);
                 }
             }
-
             var extt = model.Extradition.Where(w => w.Login_Readers == Manager.Login && w.Date_Return==null).ToList();
-
+            //вывод книг забраннированных пользователем
             foreach (var ex in extt)
             {
                 Vzitie.Items.Add($"{ex.Books.Name_Publication} ({ex.Books.Authors.Au_Surname} {ex.Books.Authors.Au_Name})");
             }
-
             foreach (var it in itemBooks)
             {
                 ListItebBookUI.Children.Add(it);
             }
-
         }
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    LibraryEntities1 model = new LibraryEntities1();
-
-        //    if (ComboBoxBooks.SelectedIndex!=-1)
-        //    {
-        //        var book = _items.Single(s => s.Item1 == ComboBoxBooks.SelectedIndex);
-        //        var modelBook = model.Books.Single(s => s.ID_Publication == book.Item2);
-
-        //        Extradition extradition = new Extradition();
-        //        extradition.ID_Publication = modelBook.ID_Publication;
-        //        extradition.Login_Readers = Manager.Login;
-        //        extradition.Date_Issue = DateTime.Now;
-        //        extradition.Date_Delivery = DateTime.Now.AddMonths(1);
-
-        //        model.Extradition.Add(extradition);
-        //        model.SaveChanges();
-
-        //        UpdateDisplay();
-        //    }
-        //}
-
+        //метод поиска обращается к методу обновления дисплея
         private void Poisk_TextChanged(object sender, TextChangedEventArgs e)
         {
             UpdateDisplay();
